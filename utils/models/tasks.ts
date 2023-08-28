@@ -16,6 +16,6 @@ const TaskSchema = new Schema<ITask>({
 });
 
 // Si le model existe il le recupere si non il créer un nouveau model dont le nom est 'Task' et son schema sera `TaskSchema`
-const Task = models.task || model<ITask>("Task", TaskSchema);
+const Tasks = models.Task || model<ITask>("Task", TaskSchema);
 
-export default Task;
+export default Tasks;

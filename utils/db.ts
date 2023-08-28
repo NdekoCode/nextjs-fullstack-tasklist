@@ -16,7 +16,9 @@ export const connectToBD: () => Promise<void> = async () => {
     } as ConnectOptions);
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message);
+      console.error(error.message);
+    } else {
+      console.error(error);
     }
   }
 };

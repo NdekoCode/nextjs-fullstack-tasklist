@@ -1,8 +1,8 @@
 import { Dispatch, FormEvent, PropsWithChildren, SetStateAction } from "react";
 
 export type AddTaskProps = PropsWithChildren<{
-  task: string;
-  setTask: Dispatch<SetStateAction<string>>;
+  newTask: string;
+  setNewTask: Dispatch<SetStateAction<string>>;
   handleCreateTask: (e: FormEvent) => Promise<void>;
 }>;
 
