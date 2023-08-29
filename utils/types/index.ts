@@ -11,3 +11,9 @@ export interface ITask {
   title: string;
   completed: boolean;
 }
+
+export type TaskProp = PropsWithChildren<{
+  task: ITask;
+  handleDeleteTask: (task: ITask) => Promise<void>;
+  handleCompleteTask: (task: ITask) => Promise<void>;
+}>;

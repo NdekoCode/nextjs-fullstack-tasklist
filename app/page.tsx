@@ -4,8 +4,9 @@
 import AddTask from "@/components/AddTask";
 import Header from "@/components/Header";
 import NoTask from "@/components/NoTask";
+import { Task } from "@/components/Task";
 import { ITask } from "@/utils/types";
-import { Container, List, ListItem, Spinner } from "@chakra-ui/react";
+import { Container, List, Spinner } from "@chakra-ui/react";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Home() {
@@ -52,6 +53,12 @@ export default function Home() {
       }
     }
   }
+  const handleDeleteTask = async(task:ITask)=>{
+
+  }
+  const handleCompleteTask = async(task:ITask)=>{
+
+  }
   return (
 
     <main>
@@ -62,9 +69,9 @@ export default function Home() {
       {
         isLoading && <Spinner/>
       }
-     { tasks.length>0 ?
+     {!isLoading && tasks.length>0 ?
         <List>
-          {tasks.map((task:ITask)=>(<ListItem key={task._id}>{task.title}</ListItem>))}
+          {tasks.map((task:ITask)=>(<Task key={task._id} task={task} handleDeleteTask={handleDeleteTask} handleCompleteTask={handleCompleteTask}/>))}
         </List>:!isLoading&&<NoTask/>}
       </Container>
     </main>
