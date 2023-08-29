@@ -57,7 +57,26 @@ export default function Home() {
 
   }
   const handleCompleteTask = async(task:ITask)=>{
-
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/tasks/completed',{
+        method:'PUT',
+        body:JSON.stringify(task)
+      })
+      if(res.ok){
+        await fetchTask()
+      }else {
+        console.log("Error ",res);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      if (error instanceof Error) {
+        console.log(error.stack, error.message);
+      } else {
+        console.log(error);
+      }
+    }
   }
   return (
 
@@ -69,7 +88,7 @@ export default function Home() {
       {
         isLoading && <Spinner/>
       }
-     {!isLoading && tasks.length>0 ?
+     {tasks && tasks.length>0 ?
         <List>
           {tasks.map((task:ITask)=>(<Task key={task._id} task={task} handleDeleteTask={handleDeleteTask} handleCompleteTask={handleCompleteTask}/>))}
         </List>:!isLoading&&<NoTask/>}
