@@ -24,6 +24,7 @@ export default function Home() {
   useEffect(()=>{
     (async()=>{
       await fetchTask()
+      setIsLoading(false);
     })()
   },[isLoading])
   const handleCreateTask:(e:FormEvent)=>Promise<void> =async(e)=>{
@@ -55,7 +56,7 @@ export default function Home() {
     }
   }
   const handleDeleteTask = async(task:ITask)=>{
-    
+    setIsLoading(true)
     try{
       const res = await fetch('/api/tasks/delete',{
         method:'DELETE',
@@ -65,6 +66,7 @@ export default function Home() {
         await fetchTask();
   
       }
+      setIsLoading(false)
     }catch(error){
 
       if (error instanceof Error) {
@@ -72,6 +74,7 @@ export default function Home() {
       } else {
         console.log(error);
       }
+      setIsLoading(false)
     }
   }
   const handleCompleteTask = async(task:ITask)=>{
