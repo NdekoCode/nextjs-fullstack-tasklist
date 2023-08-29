@@ -63,8 +63,7 @@ export default function Home() {
         body:JSON.stringify(task)
       })
       if(res.ok){
-        await fetchTask();
-  
+        setTasks(state=>state.filter(t=>t._id!==task._id)) 
       }
       setIsLoading(false)
     }catch(error){
@@ -85,7 +84,12 @@ export default function Home() {
         body:JSON.stringify(task)
       })
       if(res.ok){
-        await fetchTask()
+        const updateTask = tasks.map(t=>{
+          if(t._id===task._id){
+          t.completed = !t.completed;
+        }
+      return t
+    });
       }else {
         console.log("Error ",res);
       }
