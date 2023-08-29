@@ -3,10 +3,11 @@
 
 import AddTask from "@/components/AddTask";
 import Header from "@/components/Header";
+import Loading from "@/components/Loading";
 import NoTask from "@/components/NoTask";
 import { Task } from "@/components/Task";
 import { ITask } from "@/utils/types";
-import { Container, List, Spinner } from "@chakra-ui/react";
+import { Container, List } from "@chakra-ui/react";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Home() {
@@ -103,7 +104,7 @@ export default function Home() {
       {newTask}
       <AddTask newTask={newTask} setNewTask={setNewTask} handleCreateTask={handleCreateTask}/>
       {
-        isLoading && <Spinner/>
+        isLoading && <Loading/>
       }
      {tasks && tasks.length>0 ?
         <List>
