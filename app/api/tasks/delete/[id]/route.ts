@@ -1,12 +1,14 @@
 import { connectToBD } from "@/utils/db";
 import Tasks from "@/utils/models/tasks";
+import { ITaskRequestParam } from "@/utils/types";
 import { NextRequest, NextResponse } from "next/server";
-
-export const DELETE = async (req: NextRequest) => {
+export const DELETE = async (
+  req: NextRequest,
+  { params }: ITaskRequestParam
+) => {
   try {
-    const task = await req.json();
     await connectToBD();
-    await Tasks.deleteOne({ _id: task._id });
+    await Tasks.findByIdAndRemove(params.id);
     return NextResponse.json("Task deleted successfully", { status: 201 });
   } catch (error) {
     if (error instanceof Error) {

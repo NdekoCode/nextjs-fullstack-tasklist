@@ -12,8 +12,13 @@ export interface ITask {
   completed: boolean;
 }
 
-export type TaskProp = PropsWithChildren<{
+export interface ITaskProp {
   task: ITask;
   handleDeleteTask: (task: ITask) => Promise<void>;
   handleCompleteTask: (task: ITask) => Promise<void>;
-}>;
+}
+export interface ITaskRequestParam {
+  params: {
+    id: string | number;
+  };
+}

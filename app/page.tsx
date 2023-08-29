@@ -58,9 +58,8 @@ export default function Home() {
   const handleDeleteTask = async(task:ITask)=>{
     setIsLoading(true)
     try{
-      const res = await fetch('/api/tasks/delete',{
-        method:'DELETE',
-        body:JSON.stringify(task)
+      const res = await fetch(`/api/tasks/delete/${task._id}`,{
+        method:'DELETE'
       })
       if(res.ok){
         setTasks(state=>state.filter(t=>t._id!==task._id)) 
@@ -79,8 +78,8 @@ export default function Home() {
   const handleCompleteTask = async(task:ITask)=>{
     setIsLoading(true);
     try {
-      const res = await fetch('/api/tasks/completed',{
-        method:'PUT',
+      const res = await fetch(`/api/tasks/completed/${task._id}`,{
+        method:'PATCH',
         body:JSON.stringify(task)
       })
       if(res.ok){
