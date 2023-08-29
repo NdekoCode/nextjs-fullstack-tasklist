@@ -7,7 +7,7 @@ export const DELETE = async (req: NextRequest) => {
     const task = await req.json();
     await connectToBD();
     await Tasks.deleteOne({ _id: task._id });
-    return NextResponse.json("Task deleted successfully", { status: 204 });
+    return NextResponse.json("Task deleted successfully", { status: 201 });
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.stack, error.message);

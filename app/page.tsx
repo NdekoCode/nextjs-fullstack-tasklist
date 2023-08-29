@@ -54,7 +54,24 @@ export default function Home() {
     }
   }
   const handleDeleteTask = async(task:ITask)=>{
+    
+    try{
+      const res = await fetch('/api/tasks/delete',{
+        method:'DELETE',
+        body:JSON.stringify(task)
+      })
+      if(res.ok){
+        await fetchTask();
+  
+      }
+    }catch(error){
 
+      if (error instanceof Error) {
+        console.log(error.stack, error.message);
+      } else {
+        console.log(error);
+      }
+    }
   }
   const handleCompleteTask = async(task:ITask)=>{
     setIsLoading(true);

@@ -1,5 +1,5 @@
 import { ITaskProp } from '@/utils/types'
-import { CheckIcon } from '@chakra-ui/icons'
+import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
 import { Button, Card, Flex, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 
@@ -11,7 +11,12 @@ export const Task:FunctionComponent<ITaskProp> = ({task,handleCompleteTask,handl
             {task.completed ?<Text flexGrow={1} as="del">{task.title}</Text>: 
             <Text flexGrow={1}>{task.title}</Text>}
             <Flex>
-                <Button onClick={()=>handleCompleteTask(task)} ml="1rem" colorScheme='whatsapp' isDisabled={task.completed}><CheckIcon/></Button>
+                <Button onClick={()=>handleCompleteTask(task)} ml="1rem" colorScheme='whatsapp' isDisabled={task.completed}>
+                    <CheckIcon/>
+                </Button>
+                <Button onClick={()=>handleDeleteTask(task)} ml="1rem" colorScheme='red'>
+                    <DeleteIcon />
+                </Button>
             </Flex>
         </Flex>
 
